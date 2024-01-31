@@ -79,7 +79,7 @@ const Register = () => {
           }
         />
         <Button variant="contained" onClick={handleFormSubmit}>
-          Submit
+          Register
         </Button>
       </div>
     </>
