@@ -1,5 +1,6 @@
 import React from "react";
 import Message from "./Message";
+import MessageInput from "./MessageInput";
 
 const Chatarea = () => {
   return (
@@ -9,6 +10,7 @@ const Chatarea = () => {
         <Message text="Hay! how's it going" sent=''/>
         <Message text="I'm good." sent="recieved"/>
       </div>
+      <MessageInput/>
     </div>
   );
 };
