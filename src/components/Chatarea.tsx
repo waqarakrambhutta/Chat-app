@@ -1,6 +1,7 @@
 import React from "react";
 import Message from "./Message";
 import MessageInput from "./MessageInput";
+import withAuthenctication from "../utils/withAuthentication";
 
 const Chatarea = () => {
   return (
@@ -16,4 +17,4 @@ const Chatarea = () => {
 };
 
 
-export default Chatarea;
+export default withAuthenctication(Chatarea);

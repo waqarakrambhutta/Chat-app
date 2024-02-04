@@ -10,20 +10,21 @@ import Chatarea from "./components/Chatarea";
 const App = () => {
   return (
     <>
-      <div className="chat-container">
+      {/* <div className="chat-container">
         <Sidebar />
         <Chatarea />
-      </div>
+      </div> */}
 
-      {/* <BrowserRouter>
-   <Navbar/>
-    <Routes>
-      <Route path='/login' element={<Login/>}></Route>
-      <Route path='/register' element={<Register/>}></Route>
-    </Routes>
-   </BrowserRouter> */}
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+          <Route path="/chat" element={<><Sidebar/><Chatarea/></>}></Route>
+        </Routes>
+      </BrowserRouter>
     </>
-  );
+  ); 
 };
 
 export default App;

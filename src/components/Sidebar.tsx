@@ -1,4 +1,5 @@
 import React from 'react'
+import withAuthenctication from '../utils/withAuthentication'
 
 const Sidebar = () => {
   return (
@@ -6,4 +7,4 @@ const Sidebar = () => {
   )
 }
 
-export default Sidebar
+export default withAuthenctication(Sidebar);
