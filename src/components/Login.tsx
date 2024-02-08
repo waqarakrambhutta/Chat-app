@@ -18,7 +18,9 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        const token = data["access"];
+        document.cookie = `token=${token}; path=/`;
+        // console.log(document.cookie)
       })
       .catch((error) => console.log(error));
   };
