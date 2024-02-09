@@ -20,7 +20,11 @@ const Login = () => {
       .then((data) => {
         const token = data["access"];
         document.cookie = `token=${token}; path=/`;
-        // console.log(document.cookie)
+        // if (document.cookie === null) {
+        //   console.log(true);
+        // } else {
+        //   console.log(false);
+        // }
       })
       .catch((error) => console.log(error));
   };

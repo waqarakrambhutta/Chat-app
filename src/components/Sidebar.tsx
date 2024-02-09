@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from "react";
-import withAuthenctication from "../utils/withAuthentication";
 import axios from "axios";
 
 const Sidebar = () => {
   const BASE_URL = "http://127.0.0.1:8000/";
-  const [userList, setUserList] = useState([]);
+  const [userList, setUserList] = useState({});
 
   const getAuthTokenFromCookie = () => {
     const [name, value] = document.cookie.split("=");
-    console.log()
-    if (name === "token") {
-      // console.log(value)
-      return value;
-    }
-    return null;
+
+  
+      if (name === "token") {
+        console.log(value)
+        return value;
+      } else {
+        return null;
+      }
   };
 
   useEffect(() => {
     const authToken = getAuthTokenFromCookie();
+    // console.log(authToken)
     if (authToken) {
       axios
         .get(`${BASE_URL}api/users/`, {
@@ -27,7 +29,7 @@ const Sidebar = () => {
         })
         .then((response) => {
           setUserList(response.data);
-          console.log(userList);
+          console.log(userList);          
         })
         .catch((error) => {
           console.log("Error while making API request", error);
@@ -38,4 +40,4 @@ const Sidebar = () => {
   return <div className="sidebar"></div>;
 };
 
-export default withAuthenctication(Sidebar);
+export default Sidebar;
