@@ -1,0 +1,6 @@
+backend:
+npm install express dotenv cookie-parser bcryptjs mongoose socket.io jsonwebtoken
+npm install nodemon --save-dev
+
+frontend:
+npm install
