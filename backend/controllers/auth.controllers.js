@@ -1,4 +1,5 @@
 import User from "../models/user.models.js"
+import bcrypt from "bcryptjs"
 
 export const signup = async (req,res)=>{
     try {
@@ -16,6 +17,9 @@ export const signup = async (req,res)=>{
 
         // HASH PASSWORD HERE
 
+        const salt = await bcrypt.genSalt(10);
+        const hasshedPassword = await bcrypt.hash(password,salt)
+
         // https://avatar.iran.liara.run/
 
         const boysProfilePic = `https://avatar.iran.liara.run/public/boy?username=${username}`
@@ -24,7 +28,7 @@ export const signup = async (req,res)=>{
         const newUser = new User({
             fullName,
             username,
-            password,
+            password: hasshedPassword,
             gender,
             profilePic: gender === "male" ? boysProfilePic : girlsProfilePic
         })
