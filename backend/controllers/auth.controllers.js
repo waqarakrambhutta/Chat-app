@@ -1,5 +1,6 @@
 import User from "../models/user.models.js"
 import bcrypt from "bcryptjs"
+import generateTokenAndSetCookie from "../utils/generateToken.js";
 
 export const signup = async (req,res)=>{
     try {
@@ -32,23 +33,28 @@ export const signup = async (req,res)=>{
             gender,
             profilePic: gender === "male" ? boysProfilePic : girlsProfilePic
         })
+        
+        if(newUser){
+            // USE jwt tokens here.
+            generateTokenAndSetCookie(newUser._id,res);        
 
-        await newUser.save()
-
-        res.status(201).json({
-            _id:username._id,
-            fullName:newUser.fullName,
-            username:newUser.username,
-            profilePic:newUser.profilePic
-        })
+            await newUser.save()
+    
+            res.status(201).json({
+                _id:username._id,
+                fullName:newUser.fullName,
+                username:newUser.username,
+                profilePic:newUser.profilePic
+            })
+        }
     } catch (error) {
         console.log("Error in signup controller", error.message)
         return res.status(501).json({error:"Internal Server Error"})
     }
 }
 
-export const login = (req,res)=>{
-    console.log('LOGIN User')
+export const login = async (req,res)=>{
+   
 }
 
 export const logout = (req,res)=>{
