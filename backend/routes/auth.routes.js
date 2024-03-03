@@ -1,4 +1,4 @@
-import express, { response } from 'express'
+import express from 'express'
 import { signup,login,logout } from '../controllers/auth.controllers.js'
 
 
