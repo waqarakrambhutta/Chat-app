@@ -11,3 +11,7 @@ const conversationSchema = mongoose.Schema({
         default:[]
     }]
 })
+
+const Conversation = mongoose.model("Converstation",conversationSchema)
+
+export default Conversation;
