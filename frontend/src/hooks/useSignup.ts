@@ -1,7 +1,7 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-const useSignup = () => {
+export const useSignup = () => {
   const [loading, setLoading] = useState(false);
 
   const signup = async ({
@@ -10,7 +10,7 @@ const useSignup = () => {
     password,
     confirmPassword,
     gender,
-  }) => {
+  }:any) => {
     const success = handleInputErrors({
       fullName,
       username,
@@ -21,7 +21,7 @@ const useSignup = () => {
     if (!success) return;
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/signup/", {
+      const res = await fetch("/api/auth/signup/", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({
@@ -33,8 +33,8 @@ const useSignup = () => {
         }),
       });
       const data = await res.json();
-      console.log(data)
-    } catch (error) {
+      console.log(data);
+    } catch (error:any) {
       toast.error(error.message);
     } finally {
       setLoading(false);
@@ -51,7 +51,7 @@ function handleInputErrors({
   password,
   confirmPassword,
   gender,
-}) {
+}:any) {
   if (!fullName || !username || !password || !confirmPassword || !gender) {
     toast.error("Please fill in all fields.");
     return false;

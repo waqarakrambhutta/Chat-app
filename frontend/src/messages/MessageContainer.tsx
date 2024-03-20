@@ -3,7 +3,7 @@ import MessageInput from "./MessageInput";
 import Messages from "./Messages";
 
 const MessageContainer = () => {
-  const chatIsSelected = true;
+  const chatIsSelected = false;
 
   return (
     <div className="md:min-w-[450px] flex flex-col">
