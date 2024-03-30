@@ -1,6 +1,6 @@
+import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
-// import { useAuthContext } from "../context/AuthContext";
 
 interface SignUp {
   fullName: string;
@@ -12,7 +12,6 @@ interface SignUp {
 
 const useSignup = () => {
   const [loading, setLoading] = useState(false);
-  // const { setAuthUser } = useAuthContext();
 
   const signup = async ({
     fullName,
@@ -32,26 +31,37 @@ const useSignup = () => {
 
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:3000/api/auth/signup/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fullName,
-          username,
-          password,
-          confirmPassword,
-          gender,
-        }),
-      });
+      // const res = await fetch("http://localhost:3000/api/auth/signup/", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({
+      //     fullName,
+      //     username,
+      //     password,
+      //     confirmPassword,
+      //     gender,
+      //   }),
+      // });
 
-      const data = await res.json();
-      console.log(data);
-      // if (data.error) {
-      // 	throw new Error(data.error);
-      // }
-      // localStorage.setItem("chat-user", JSON.stringify(data));
-      // setAuthUser(data);
-    } catch (error:any) {
+      await axios
+        .post(
+          "http://localhost:5000/api/auth/signup",
+          JSON.stringify({
+            fullName,
+            username,
+            password,
+            confirmPassword,
+            gender,
+          }),
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        )
+        .then((res) => console.log(res.data));
+      // .then(res => console.log(res));
+
+      // const data = await res.json();
+    } catch (error: any) {
       toast.error(error.message);
     } finally {
       setLoading(false);
@@ -68,7 +78,7 @@ function handleInputErrors({
   password,
   confirmPassword,
   gender,
-}:any) {
+}: any) {
   if (!fullName || !username || !password || !confirmPassword || !gender) {
     toast.error("Please fill in all fields");
     return false;
